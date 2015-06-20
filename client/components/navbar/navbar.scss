@@ -18,7 +18,10 @@ $logoSize       : 26px;
       > a {
         color: $colDefault;
         &:hover,  &:focus {
-          color: $colHighlight; }}
+          color: $colHighlight; }
+        > span.glyphicon {
+          padding-right : 5px;
+          } }
       @if $dropDown {
         > .dropdown-menu {
           background-color: $bgDefault;

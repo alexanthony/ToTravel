@@ -3,8 +3,10 @@
 angular.module('toTravelApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
+      'title': 'Add',
+      'link': '/addJourney',
+      'showIcon' :  true,
+      'icon' : 'glyphicon-plus'
     }];
 
     $scope.isCollapsed = true;
