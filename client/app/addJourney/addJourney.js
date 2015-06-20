@@ -6,6 +6,7 @@ angular.module('toTravelApp')
       .state('addJourney', {
         url: '/addJourney',
         templateUrl: 'app/addJourney/addJourney.html',
-        controller: 'AddJourneyCtrl'
+        controller: 'AddJourneyCtrl',
+        authenticate: true
       });
   });
