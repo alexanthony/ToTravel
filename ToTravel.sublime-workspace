@@ -1,0 +1,387 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"auth",
+				"authenticate"
+			],
+			[
+				"failure",
+				"failureFlash"
+			],
+			[
+				"fai",
+				"failureRedirect"
+			],
+			[
+				"succ",
+				"successRedirect"
+			],
+			[
+				"url",
+				"urlRouterProvider"
+			],
+			[
+				"add",
+				"addJourney"
+			],
+			[
+				"ur",
+				"urlRouterProvider"
+			],
+			[
+				"find",
+				"findOrCreateUser"
+			],
+			[
+				"new",
+				"newUser"
+			],
+			[
+				"fo",
+				"formData"
+			],
+			[
+				"in",
+				"input-lg"
+			],
+			[
+				"journey",
+				"journey-list"
+			],
+			[
+				"logo",
+				"logoSize"
+			],
+			[
+				"nav",
+				"navbar"
+			],
+			[
+				"backgroun",
+				"background-color"
+			],
+			[
+				"t",
+				"toTravel"
+			],
+			[
+				"pad",
+				"padding-bottom"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 362.0,
+		"last_filter": "closa",
+		"selected_items":
+		[
+			[
+				"closa",
+				"File: Close All"
+			],
+			[
+				"prefe",
+				"Preferences: Alignment File Settings – User"
+			],
+			[
+				"a",
+				"Preferences: Alignment Key Bindings – User"
+			],
+			[
+				"al",
+				"Preferences: Alignment Key Bindings – Default"
+			],
+			[
+				"align",
+				"Preferences: Alignment File Settings – Default"
+			],
+			[
+				"prefere",
+				"Preferences: Alignment File Settings – User"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pre",
+				"Preferences: Settings - Default"
+			],
+			[
+				"prefer",
+				"Preferences: Settings - User"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"search",
+				"File: Search Files"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/alex/Projects/ToTravel"
+	],
+	"file_history":
+	[
+		"/home/alex/Projects/ToTravel/README.md",
+		"/home/alex/Projects/ToTravel/server/views/_layouts/static.jade",
+		"/home/alex/Projects/ToTravel/server/views/_layouts/default.jade",
+		"/home/alex/Projects/ToTravel/server/views/home/express.jade",
+		"/home/alex/Projects/ToTravel/server/views/home/index.jade",
+		"/home/alex/Projects/ToTravel/server/views/home/page.jade",
+		"/home/alex/Projects/ToTravel/server/views/empty.jade",
+		"/home/alex/Projects/ToTravel/server/views/status/index.jade",
+		"/home/alex/Projects/ToTravel/package.json",
+		"/home/alex/Projects/ToTravel/public/js/core.js",
+		"/home/alex/Projects/ToTravel/public/js/appRoutes.js",
+		"/home/alex/Projects/ToTravel/app/models/journey.js",
+		"/home/alex/Projects/ToTravel/public/js/controllers/userControllers.js",
+		"/home/alex/Projects/ToTravel/public/js/controllers/journeyControllers.js",
+		"/home/alex/Projects/ToTravel/public/js/services/usersService.js",
+		"/home/alex/Projects/ToTravel/public/partials/signup.jade",
+		"/home/alex/Projects/ToTravel/public/partials/login.jade",
+		"/home/alex/Projects/ToTravel/public/layout.jade",
+		"/home/alex/Projects/ToTravel/public/index.jade",
+		"/home/alex/Projects/ToTravel/routes/index.js",
+		"/home/alex/Projects/ToTravel/app/routes.js",
+		"/home/alex/Projects/ToTravel/server.js",
+		"/home/alex/Projects/ToTravel/config/passport.js",
+		"/home/alex/Projects/ToTravel/public/partials/addJourney.jade",
+		"/home/alex/Projects/ToTravel/public/partials/myJourneys.jade",
+		"/home/alex/Projects/ToTravel/app/models/user.js",
+		"/home/alex/Projects/ToTravel/sass/style.scss",
+		"/home/alex/Projects/ToTravel/public/js/directives/showErrors.js",
+		"/home/alex/Projects/ToTravel/public/js/controllers/controllers.js",
+		"/home/alex/Projects/ToTravel/public/js/services/journeysService.js",
+		"/home/alex/style.css.old",
+		"/home/alex/Projects/ToTravel/public/js/services/journeys.js",
+		"/home/alex/Projects/ToTravel/public/partials/index.jade",
+		"/home/alex/Projects/ToTravel/public/style.css",
+		"/home/alex/.config/sublime-text-3/Packages/User/Base File.sublime-settings",
+		"/home/alex/Projects/ToTravel/public/js/controllers/mainxxxxx.js",
+		"/home/alex/.config/sublime-text-3/Packages/Terminal/Base File.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/Alignment/Default (Linux).sublime-keymap",
+		"/home/alex/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/alex/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/alex/Projects/ToTravel/public/js/controllers/main.js",
+		"/home/alex/Projects/ToTravel/config/database.js",
+		"/home/alex/Projects/ToTravel/public/index.html",
+		"/home/alex/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 92.0,
+		"where_history":
+		[
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"jade",
+			".hbs",
+			"scripts",
+			"hbs",
+			"view engine",
+			"/api/signup",
+			"journeyService",
+			"formData",
+			"main.js",
+			"    | &#x9;\n    "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"    "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 316.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 102.0
+	},
+	"pinned_build_system": "",
+	"project": "ToTravel.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 895.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
