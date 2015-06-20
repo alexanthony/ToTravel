@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/totravel-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
