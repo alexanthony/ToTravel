@@ -14,9 +14,4 @@ header#banner.hero-unit
           a(href='#', tooltip='{{journey.description}}')
             | {{journey.name}}
 
-footer.footer
-  .container
-    p
-      | ToTravel
-      = ' | '
-      | &copy; Alex Anthony 2015
+div(ng-include='"components/footer/footer.html"')
