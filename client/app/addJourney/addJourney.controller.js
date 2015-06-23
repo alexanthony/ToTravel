@@ -4,7 +4,7 @@ angular.module('toTravelApp')
   .controller('AddJourneyCtrl', function ($scope, journeyFactory) {
     $scope.newJourney = {
       transportationAndRatings: [{
-              method: 'fly',
+              method: '',
               rating: 1
             }]
     };
@@ -34,9 +34,13 @@ angular.module('toTravelApp')
       return $scope.newJourney.transportationAndRatings.length > 1;
     };
 
+    $scope.canAddTransportationMethod = function() {
+      return $scope.newJourney.transportationAndRatings.length < $scope.methods.length;
+    };
+
     $scope.addTransportationAndRating = function() {
       $scope.newJourney.transportationAndRatings.push({
-        method: 'fly',
+        method: '',
         rating: 1
       });
     };

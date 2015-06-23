@@ -21,16 +21,16 @@ div(ng-include='"components/navbar/navbar.html"')
     div(ng-repeat="transportationAndRating in newJourney.transportationAndRatings").row.form-group
       .transportationMethod.col-lg-2
         ui-select(ng-model='transportationAndRating.method', search-enabled='false', append-to-body='true')
-          ui-select-match {{$select.selected.name}}
-          ui-select-choices(repeat='transportationMethod.id as transportationMethod in methods')
-            p {{transportationMethod.name}}
+          ui-select-match(placeholder='Select Transport...') {{$select.selected.name}}
+          ui-select-choices(repeat='transportationMethod.id as transportationMethod in methods | availableMethodsFilter:newJourney.transportationAndRatings:$select.selected.id')
+            p {{transportationMethod.name }}
       .transportationRating.col-lg-2
         rating(ng-model='transportationAndRating.rating').input-lg
       div(ng-show='canDeleteTransportationMethod()', style='padding-top: 5px;')
         button.btn.btn-sm(ng-click='deleteTransportationAndRating(transportationAndRating)')
           span.glyphicon.glyphicon-remove
     .row.form-group
-      button.btn.btn-sm(ng-click='addTransportationAndRating()')
+      button.btn.btn-sm(ng-click='addTransportationAndRating()', ng-show='canAddTransportationMethod()')
         span.glyphicon.glyphicon-plus
 
     .row.form-group
