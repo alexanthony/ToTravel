@@ -9,12 +9,12 @@ angular.module('toTravelApp')
             }]
     };
     $scope.methods = [
-      {id: 'bike',  name: 'Bike'},
-      {id: 'walk',  name: 'Walk/Trek'},
-      {id: 'drive', name: 'Drive'},
-      {id: 'fly',   name: 'Fly'},
-      {id: 'train', name: 'Train'},
-      {id: 'boat',  name: 'Boat'}
+      {id: 'bike',  name: 'Bike', hasFAIcon: true, icon: 'fa-bicycle'},
+      {id: 'walk',  name: 'Walk/Trek', hasFAIcon: true, icon: 'fa-compass'},
+      {id: 'drive', name: 'Drive', hasFAIcon: true, icon: 'fa-car'},
+      {id: 'fly',   name: 'Fly', hasFAIcon: true, icon: 'fa-plane'},
+      {id: 'train', name: 'Train', hasFAIcon: true, icon: 'fa-train'},
+      {id: 'boat',  name: 'Boat', hasFAIcon: true, icon: 'fa-ship'}
       ];
 
     $scope.hoveringOver = function(value) {
