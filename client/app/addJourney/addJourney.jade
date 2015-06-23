@@ -18,5 +18,20 @@ div(ng-include='"components/navbar/navbar.html"')
       //- | How can you make the journey?
       //- br
       //- Pictures of modes of transport with star ratings next to them
+    div(ng-repeat="transportationAndRating in newJourney.transportationAndRatings").row.form-group
+      .transportationMethod.col-lg-2
+        ui-select(ng-model='transportationAndRating.method', search-enabled='false', append-to-body='true')
+          ui-select-match {{$select.selected.name}}
+          ui-select-choices(repeat='transportationMethod.id as transportationMethod in methods')
+            p {{transportationMethod.name}}
+      .transportationRating.col-lg-2
+        rating(ng-model='transportationAndRating.rating').input-lg
+      div(ng-show='canDeleteTransportationMethod()', style='padding-top: 5px;')
+        button.btn.btn-sm(ng-click='deleteTransportationAndRating(transportationAndRating)')
+          span.glyphicon.glyphicon-remove
+    .row.form-group
+      button.btn.btn-sm(ng-click='addTransportationAndRating()')
+        span.glyphicon.glyphicon-plus
 
-    button.btn.btn-primary.btn-lg(type='submit', ng-click='createJourney()') Create Journey
+    .row.form-group
+      button.btn.btn-primary.btn-lg(type='submit', ng-click='createJourney()') Create Journey

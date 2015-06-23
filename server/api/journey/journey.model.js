@@ -30,7 +30,7 @@ var JourneySchema = new Schema({
     description: String,
     addedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
-  transportationAndRating: [
+  transportationAndRatings: [
   {
     method: {type: String, enum: ['bike', 'walk', 'drive', 'fly', 'train', 'boat']},
     rating: {type: Number, min: 0, max: 5},

@@ -15,6 +15,11 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+$bgDefault      : #99009f;
+$bgHighlight    : #620065;
+$colDefault     : #ecf0f1;
+$colHighlight   : #ecdbff;
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

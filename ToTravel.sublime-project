@@ -5,11 +5,11 @@
 			"path": ".",
       "folder_exclude_patterns":[
   "node_modules",
-  "dist",
+  "/home/alex/Projects/ToTravel/dist",
   ".tmp",
   "npm-debug.log",
   ".sass-cache"
 ]
-		}
+    }
 	]
 }
