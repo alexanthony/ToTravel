@@ -11,8 +11,8 @@ describe('Service: journeyFactory', function () {
     journeyFactory = _journeyFactory_;
   }));
 
-  it('should do something', function () {
-    expect(!!journeyFactory).toBe(true);
-  });
+  // it('should do something', function () {
+  //   expect(!!journeyFactory).toBe(true);
+  // });
 
 });

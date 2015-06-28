@@ -18,7 +18,30 @@ div(ng-include='"components/navbar/navbar.html"')
       //- | How can you make the journey?
       //- br
       //- Pictures of modes of transport with star ratings next to them
-    div(ng-repeat="transportationAndRating in newJourney.transportationAndRatings").row.form-group
+      //- For initially hidden maps, use refresh tag to redraw on accordion opening
+    .row
+      accordion(close-others='true')
+        accordion-group(is-open='startMap.isOpen', is-disabled='false')
+          accordion-heading
+            p.accordion-header Where does your journey start?
+          div(ng-if='startMap.isOpen')
+            ui-gmap-google-map(center='startMap.center', zoom='startMap.zoom', events='startMap.events', refresh='startMap.refresh')
+              ui-gmap-marker(coords='startMarker', idKey='startMarker.id', options='startMarker.options')
+          div(ng-if='!startMap.isOpen', style='height: 400px;')
+
+        accordion-group(is-open='endMap.isOpen', is-disabled='false')
+          accordion-heading
+            p.accordion-header Where does your journey finish?
+          div(ng-if='endMap.isOpen') 
+            ui-gmap-google-map(center='endMap.center', zoom='endMap.zoom', events='endMap.events', refresh='endMap.refresh')
+              ui-gmap-marker(coords='startMarker', idKey='startMarker.id', options='startMarker.options')
+              ui-gmap-marker(coords='endMarker', idKey='endMarker.id', options='endMarker.options')
+              ui-gmap-polyline(path='endMap.path', stroke='endMap.pathStroke', clickable='false', draggable='false')
+          //- Placeholder - makes accordion open to (almost) the right size
+          div(ng-if='!endMap.isOpen', style='height: 400px;')
+
+
+    .row.form-group(ng-repeat="transportationAndRating in newJourney.transportationAndRatings")
       .transportationMethod.col-lg-2
         ui-select(ng-model='transportationAndRating.method', search-enabled='false', append-to-body='true')
           ui-select-match(placeholder='Select Transport...') 

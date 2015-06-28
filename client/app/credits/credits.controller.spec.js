@@ -15,7 +15,7 @@ describe('Controller: CreditsCtrl', function () {
     });
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
+  // it('should ...', function () {
+  //   expect(1).toEqual(1);
+  // });
 });

@@ -1,8 +1,27 @@
 .transportationRating {
-  padding-top: 6px;
-  color: $bgDefault;
+  padding-top: 5px;
 }
 
 .fa-rightpad {
   margin-right: 5px;
+}
+
+.angular-google-map-container { 
+  height: 400px;
+}
+
+.accordion-header {
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+.transportationRating .glyphicon-star-empty {
+  color: #e6e6e6;
+  margin-top: 4px;
+  padding-top: 2px;
+}
+
+.transportationRating .glyphicon-star {
+  color: #F57C00;
+  margin-top: 4px;
 }

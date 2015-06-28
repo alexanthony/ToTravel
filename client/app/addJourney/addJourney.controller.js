@@ -1,13 +1,23 @@
 'use strict';
 
 angular.module('toTravelApp')
-  .controller('AddJourneyCtrl', function ($scope, journeyFactory) {
+  .controller('AddJourneyCtrl', function ($scope, journeyFactory, uiGmapGoogleMapApi) {
+
     $scope.newJourney = {
       transportationAndRatings: [{
               method: '',
               rating: 1
-            }]
+            }],
+      startPoint: {
+        lat : 0,
+        long: 0
+      },
+      endPoint: {
+        lat: 0,
+        long: 0
+      }
     };
+
     $scope.methods = [
       {id: 'bike',  name: 'Bike', hasFAIcon: true, icon: 'fa-bicycle'},
       {id: 'walk',  name: 'Walk/Trek', hasFAIcon: true, icon: 'fa-compass'},
@@ -25,7 +35,24 @@ angular.module('toTravelApp')
       if ($scope.newJourney) {
         journeyFactory.create($scope.newJourney)
           .success(function() {
-            $scope.newJourney = {};
+            $scope.newJourney = {
+              transportationAndRatings: [{
+                method: '',
+                rating: 1
+              }],
+              startPoint: {
+                lat : 0,
+                long: 0
+              },
+              endPoint: {
+                lat: 0,
+                long: 0
+              }
+            };
+            $scope.startMarker.latitude = null;
+            $scope.startMarker.longitude = null;
+            $scope.endMarker.latitude = null;
+            $scope.endMarker.longitude = null;
           });
       }
     };
@@ -51,4 +78,80 @@ angular.module('toTravelApp')
         $scope.newJourney.transportationAndRatings.splice(index, 1);
       }
     };
+
+    // Async loading of google maps sdk - stuff in here can reference maps api
+    uiGmapGoogleMapApi.then(function(maps) {
+
+    $scope.startMap = { 
+      center: { latitude: 51.5, longitude: -0.12 }, 
+      zoom: 8, 
+      isOpen : true,
+      refresh: false
+    };
+
+    $scope.startMarker = {
+      id: 0,
+      options: {
+        draggable: $scope.startMap.isOpen,
+        icon: {
+          url: 'assets/images/startMarker.png',
+          size: new google.maps.Size(40, 48),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 48)
+        },
+      },
+    };
+
+    $scope.endMarker = {
+      id: 0,
+      options: {
+        draggable: true,
+        icon: {
+          url: 'assets/images/endMarker.png',
+          size: new google.maps.Size(40, 48),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 48)
+        },
+      },
+    };
+
+    $scope.endMap = { 
+      center: { latitude: 51.5, longitude: -0.12 }, 
+      zoom: 8, 
+      isOpen : false,
+      refresh : false,
+      path : [$scope.startMarker, $scope.endMarker],
+      pathStroke : {
+        color: '#99009f',
+        weight: 5
+      }
+    };
+
+    $scope.endMap.events = {
+      click: function (mapModel, eventName, originalEventArgs) {
+        $scope.endMarker.latitude = originalEventArgs[0].latLng.lat();
+        $scope.endMarker.longitude = originalEventArgs[0].latLng.lng();
+        $scope.newJourney.endPoint.lat = $scope.endMarker.latitude;
+        $scope.newJourney.endPoint.long = $scope.endMarker.longitude;
+        $scope.$apply();
+      }
+    };
+
+    $scope.startMap.events = {
+      click: function (mapModel, eventName, originalEventArgs) {
+        $scope.startMarker.latitude = originalEventArgs[0].latLng.lat();
+        $scope.startMarker.longitude = originalEventArgs[0].latLng.lng();
+        $scope.newJourney.startPoint.lat = $scope.startMarker.latitude;
+        $scope.newJourney.startPoint.long = $scope.startMarker.longitude;
+        $scope.endMap.isOpen = true;
+        $scope.$apply();
+      }
+    };
+
+    $scope.$watch('endMap.isOpen', function() {
+      $scope.endMap.refresh = $scope.endMap.isOpen;
+      //console.log($scope.endMap.isOpen);
+    });
+
   });
+});
