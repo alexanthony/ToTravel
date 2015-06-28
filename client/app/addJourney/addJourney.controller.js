@@ -18,6 +18,8 @@ angular.module('toTravelApp')
       }
     };
 
+    $scope.alerts = [];
+
     $scope.methods = [
       {id: 'bike',  name: 'Bike', hasFAIcon: true, icon: 'fa-bicycle'},
       {id: 'walk',  name: 'Walk/Trek', hasFAIcon: true, icon: 'fa-compass'},
@@ -31,10 +33,20 @@ angular.module('toTravelApp')
       $scope.overStar = value;
     };
 
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
     $scope.createJourney = function() {
       if ($scope.newJourney) {
         journeyFactory.create($scope.newJourney)
           .success(function() {
+            $scope.alerts.push({
+              type: 'success',
+              message1: 'Journey',
+              messageBold: $scope.newJourney.name,
+              message2: 'successfully saved.'
+            });
             $scope.newJourney = {
               transportationAndRatings: [{
                 method: '',
@@ -53,6 +65,15 @@ angular.module('toTravelApp')
             $scope.startMarker.longitude = null;
             $scope.endMarker.latitude = null;
             $scope.endMarker.longitude = null;
+            $scope.startMap.isOpen = true;
+          })
+          .error(function() {
+            $scope.alerts.push({
+              type: 'danger',              
+              message1: 'Journey',
+              messageBold: $scope.newJourney.name,
+              message2: 'failed to save.'            
+            });
           });
       }
     };

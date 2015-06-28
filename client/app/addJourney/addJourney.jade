@@ -1,6 +1,10 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
+  alert(ng-repeat='alert in alerts', type='{{alert.type}}', close='closeAlert($index)')
+    | {{alert.message1}} 
+    b {{alert.messageBold}} 
+    | {{alert.message2}} 
   form#journeyForm
     .row.form-group
       .col-lg-4

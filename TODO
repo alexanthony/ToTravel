@@ -12,3 +12,5 @@
 * Add unit tests:
 ** Checking validation
 ** As much of the UI as possible
+* Maps - make them sensibly centre/zoom
+* Alert on successful save
