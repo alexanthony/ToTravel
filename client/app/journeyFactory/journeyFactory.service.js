@@ -7,8 +7,11 @@ angular.module('toTravelApp')
 
     // Public API here
     return {
-      get : function() {
+      getJourneys : function() {
         return $http.get('/api/journeys');
+      },
+      getJourney : function(id) {
+        return $http.get('/api/journeys/'+id);
       },
       create : function(journeyData) {
         return $http.post('/api/journeys', journeyData);

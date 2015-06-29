@@ -15,6 +15,11 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+
+.angular-google-map-container { 
+  height: 400px;
+}
+
 $bgDefault      : #99009f;
 $bgHighlight    : #620065;
 $colDefault     : #ecf0f1;
@@ -26,6 +31,7 @@ $colHighlight   : #ecdbff;
 @import 'addJourney/addJourney.scss';
 @import 'admin/admin.scss';
 @import 'credits/credits.scss';
+@import 'journey/journey.scss';
 @import 'main/main.scss';
 @import 'footer/footer.scss';
 @import 'modal/modal.scss';

@@ -2,7 +2,7 @@
 
 angular.module('toTravelApp')
   .controller('MainCtrl', function ($scope, journeyFactory) {
-    journeyFactory.get()
+    journeyFactory.getJourneys()
       .success(function(data) {
         $scope.journeyList = data;
       })

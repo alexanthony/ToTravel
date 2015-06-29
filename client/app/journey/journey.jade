@@ -1,0 +1,23 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  .row
+    h3 {{journey.name}}
+
+  .row
+    h5 {{journey.description}}
+
+  .row
+    ui-gmap-google-map(center='map.center', zoom='map.zoom', events='map.events', refresh='map.refresh')
+      ui-gmap-marker(coords='startMarker', idKey='startMarker.id', options='startMarker.options')
+      ui-gmap-marker(coords='endMarker', idKey='endMarker.id', options='endMarker.options')
+      ui-gmap-polyline(path='map.path', stroke='map.pathStroke', clickable='false', draggable='false')
+
+  .row(ng-repeat="transportationAndRating in journey.transportationAndRatings")
+    .transportationMethod.col-lg-2
+      i(ng-show='{{getMethod(transportationAndRating).hasFAIcon}}', ng-class='getMethod(transportationAndRating).icon').fa.fa-fw.fa-rightpad
+      | {{getMethod(transportationAndRating).name }}
+    .transportationRating.col-lg-2
+      rating(ng-model='transportationAndRating.rating', readonly='true').input-lg
+
+div(ng-include='"components/footer/footer.html"')

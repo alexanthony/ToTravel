@@ -44,7 +44,6 @@ div(ng-include='"components/navbar/navbar.html"')
           //- Placeholder - makes accordion open to (almost) the right size
           div(ng-if='!endMap.isOpen', style='height: 400px;')
 
-
     .row.form-group(ng-repeat="transportationAndRating in newJourney.transportationAndRatings")
       .transportationMethod.col-lg-2
         ui-select(ng-model='transportationAndRating.method', search-enabled='false', append-to-body='true')
