@@ -1,14 +1,8 @@
 'use strict';
 
 angular.module('toTravelApp')
-  .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi) {
-    journeyFactory.getJourney($stateParams.journeyID)
-      .success(function(data) {
-        $scope.journey = data;
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
+  .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi, $q) {
+    var journeyPromise = journeyFactory.getJourney($stateParams.journeyID);
 
     $scope.methods = [
       {id: 'bike',  name: 'Bike', hasFAIcon: true, icon: 'fa-bicycle'},
@@ -27,48 +21,57 @@ angular.module('toTravelApp')
 
 
     // Async loading of google maps sdk - stuff in here can reference maps api
-    uiGmapGoogleMapApi.then(function(maps) {
+    var mapsPromise = uiGmapGoogleMapApi;
 
-      $scope.startMarker = {
-        latitude: $scope.journey.startPoint.lat,
-        longitude: $scope.journey.startPoint.long,
-        id : 0,
-        options: {
-          draggable: false,
-          icon: {
-            url: 'assets/images/startMarker.png',
-            size: new google.maps.Size(40, 48),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(20, 48)
+    $q.all([journeyPromise, mapsPromise]).then(
+// success callback
+      function(data) {
+        $scope.journey = data[0].data;
+
+        $scope.startMarker = {
+          latitude: $scope.journey.startPoint.lat,
+          longitude: $scope.journey.startPoint.long,
+          id : 0,
+          options: {
+            draggable: false,
+            icon: {
+              url: 'assets/images/startMarker.png',
+              size: new google.maps.Size(40, 48),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(20, 48)
+            }
           }
-        }
-      };
+        };
 
-      $scope.endMarker = {
-        latitude: $scope.journey.endPoint.lat,
-        longitude: $scope.journey.endPoint.long,
-        id : 0,
-        options: {
-          draggable: false,
-          icon: {
-            url: 'assets/images/endMarker.png',
-            size: new google.maps.Size(40, 48),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(20, 48)
+        $scope.endMarker = {
+          latitude: $scope.journey.endPoint.lat,
+          longitude: $scope.journey.endPoint.long,
+          id : 0,
+          options: {
+            draggable: false,
+            icon: {
+              url: 'assets/images/endMarker.png',
+              size: new google.maps.Size(40, 48),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(20, 48)
+            }
           }
-        }
-      };
+        };
 
-      $scope.map = { 
-        center: { latitude: 51.5, longitude: -0.12 }, 
-        zoom: 8, 
-        isOpen : false,
-        refresh : false,
-        path : [$scope.startMarker, $scope.endMarker],
-        pathStroke : {
-          color: '#99009f',
-          weight: 5
-        }
-      };
+        $scope.map = { 
+          center: { latitude: 51.5, longitude: -0.12 }, 
+          zoom: 8, 
+          isOpen : false,
+          refresh : false,
+          path : [$scope.startMarker, $scope.endMarker],
+          pathStroke : {
+            color: '#99009f',
+            weight: 5
+          }
+        };
+    }, 
+    // Failure callback
+    function(data) {
+      console.log('Error: '+data);
     });
   });
