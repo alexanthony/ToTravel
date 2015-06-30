@@ -1,4 +1,5 @@
 'use strict';
+/*global google */
 
 angular.module('toTravelApp')
   .controller('AddJourneyCtrl', function ($scope, journeyFactory, uiGmapGoogleMapApi) {
@@ -101,7 +102,7 @@ angular.module('toTravelApp')
     };
 
     // Async loading of google maps sdk - stuff in here can reference maps api
-    uiGmapGoogleMapApi.then(function(maps) {
+    uiGmapGoogleMapApi.then(function() {
 
     $scope.startMap = { 
       center: { latitude: 51.5, longitude: -0.12 }, 

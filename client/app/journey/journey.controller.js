@@ -1,4 +1,5 @@
 'use strict';
+/*global google */
 
 angular.module('toTravelApp')
   .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi, $q) {
