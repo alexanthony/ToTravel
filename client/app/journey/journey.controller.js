@@ -20,7 +20,6 @@ angular.module('toTravelApp')
       })[0];
     };
 
-
     // Async loading of google maps sdk - stuff in here can reference maps api
     var mapsPromise = uiGmapGoogleMapApi;
 
@@ -70,6 +69,14 @@ angular.module('toTravelApp')
             weight: 5
           }
         };
+
+        for (var i = 0; i < $scope.journey.transportationAndRatings.length; i++) {
+          var totalRating = 0;
+          for (var j = 0; j < $scope.journey.transportationAndRatings[i].ratings.length; j++) {
+            totalRating = totalRating + $scope.journey.transportationAndRatings[i].ratings[j].rating;
+          }
+          $scope.journey.transportationAndRatings[i].averageRating = totalRating / $scope.journey.transportationAndRatings[i].ratings.length;
+        }
     }, 
     // Failure callback
     function(data) {

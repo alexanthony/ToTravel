@@ -2,12 +2,17 @@
 /*global google */
 
 angular.module('toTravelApp')
-  .controller('AddJourneyCtrl', function ($scope, journeyFactory, uiGmapGoogleMapApi) {
+  .controller('AddJourneyCtrl', function ($scope, journeyFactory, uiGmapGoogleMapApi, Auth) {
+
+    $scope.currentUser = Auth.getCurrentUser();        
 
     $scope.newJourney = {
       transportationAndRatings: [{
               method: '',
-              rating: 1
+              ratings: [{
+                rating: 1,
+                ratedBy: $scope.currentUser._id
+              }]
             }],
       startPoint: {
         lat : 0,
@@ -51,7 +56,10 @@ angular.module('toTravelApp')
             $scope.newJourney = {
               transportationAndRatings: [{
                 method: '',
-                rating: 1
+                ratings: [{
+                  rating: 1,
+                  ratedBy: $scope.currentUser._id
+                  }]
               }],
               startPoint: {
                 lat : 0,
@@ -90,7 +98,10 @@ angular.module('toTravelApp')
     $scope.addTransportationAndRating = function() {
       $scope.newJourney.transportationAndRatings.push({
         method: '',
-        rating: 1
+        ratings: [{
+          rating: 1,
+          ratedBy: $scope.currentUser._id
+        }]
       });
     };
 

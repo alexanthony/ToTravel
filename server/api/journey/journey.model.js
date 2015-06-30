@@ -33,8 +33,10 @@ var JourneySchema = new Schema({
   transportationAndRatings: [
   {
     method: {type: String, enum: ['bike', 'walk', 'drive', 'fly', 'train', 'boat']},
-    rating: {type: Number, min: 0, max: 5},
-    ratedBy: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+    ratings: [{
+      rating: {type: Number, min: 1, max: 5}, 
+      ratedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    }]
   }]  
 });
 

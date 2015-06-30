@@ -18,6 +18,6 @@ div(ng-include='"components/navbar/navbar.html"')
       i(ng-show='{{getMethod(transportationAndRating).hasFAIcon}}', ng-class='getMethod(transportationAndRating).icon').fa.fa-fw.fa-rightpad
       | {{getMethod(transportationAndRating).name }}
     .transportationRating.col-lg-2
-      rating(ng-model='transportationAndRating.rating', readonly='true').input-lg
+      rating(ng-model='transportationAndRating.averageRating', readonly='true').input-lg
 
 div(ng-include='"components/footer/footer.html"')

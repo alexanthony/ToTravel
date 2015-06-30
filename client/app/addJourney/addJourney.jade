@@ -54,7 +54,7 @@ div(ng-include='"components/navbar/navbar.html"')
             i(ng-show='{{transportationMethod.hasFAIcon}}', ng-class='transportationMethod.icon').fa.fa-fw.fa-rightpad
             | {{transportationMethod.name }}
       .transportationRating.col-lg-2
-        rating(ng-model='transportationAndRating.rating').input-lg
+        rating(ng-model='transportationAndRating.ratings[0].rating').input-lg
       div(ng-show='canDeleteTransportationMethod()', style='padding-top: 5px;')
         button.btn.btn-sm(ng-click='deleteTransportationAndRating(transportationAndRating)')
           span.glyphicon.glyphicon-remove

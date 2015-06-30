@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new journey in the DB.
 exports.create = function(req, res) {
-  var journey = new Journey(_.merge({ createdBy: req.user._id }, req.body))
+  var journey = new Journey(_.merge({ createdBy: req.user._id }, req.body));
   journey.save(function(err, journey) {
     if(err) { return handleError(res, err); }
     return res.json(201, journey);
