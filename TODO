@@ -1,16 +1,20 @@
 * Add validation to API calls/Mongoose
 ** Uniqueness of transport ratings
 ** Required fields
-* Can open existing journeys
 * Cookies?
 * Emails to users
 ** Signup/email validation
 ** Other stuff
 * User Prefs
+** Avatars
+** Display names
 * Make it pretty
-* Add maps so you can actuall make journeys
 * Add unit tests:
 ** Checking validation
 ** As much of the UI as possible
-* Maps - make them sensibly centre/zoom
-* Map search bar
+* Map search 
+* Comments
+* Add MyJourneys
+* Add places along the way
+* Country reverse geocoding
+* Photos

@@ -167,6 +167,14 @@ angular.module('toTravelApp')
         $scope.newJourney.endPoint.lat = $scope.endMarker.latitude;
         $scope.newJourney.endPoint.long = $scope.endMarker.longitude;
         $scope.$apply();
+      },
+      tilesloaded: function (mapModel) {
+        if (!$scope.endMap.bounds) {
+          $scope.endMap.bounds = new google.maps.LatLngBounds();
+          $scope.endMap.bounds.extend(new google.maps.LatLng($scope.newJourney.startPoint.lat, $scope.newJourney.startPoint.long));
+          mapModel.fitBounds($scope.endMap.bounds);
+          mapModel.setZoom($scope.startMap.zoom);
+        } 
       }
     };
 
@@ -176,6 +184,10 @@ angular.module('toTravelApp')
         $scope.startMarker.longitude = originalEventArgs[0].latLng.lng();
         $scope.newJourney.startPoint.lat = $scope.startMarker.latitude;
         $scope.newJourney.startPoint.long = $scope.startMarker.longitude;
+        $scope.endMap.center = {
+          latitude: $scope.startMarker.latitude,
+          longitude: $scope.startMarker.longitude
+        };
         $scope.endMap.isOpen = true;
         $scope.$apply();
       }

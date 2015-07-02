@@ -59,7 +59,7 @@ angular.module('toTravelApp')
         };
 
         $scope.map = { 
-          center: { latitude: 51.5, longitude: -0.12 }, 
+          center: { latitude: $scope.journey.startPoint.lat, longitude: $scope.journey.startPoint.long }, 
           zoom: 8, 
           isOpen : false,
           refresh : false,
@@ -67,6 +67,14 @@ angular.module('toTravelApp')
           pathStroke : {
             color: '#99009f',
             weight: 5
+          },
+          events : {
+            tilesloaded : function(mapModel) {
+              $scope.map.bounds = new google.maps.LatLngBounds();
+              $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.startPoint.lat, $scope.journey.startPoint.long));
+              $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.endPoint.lat, $scope.journey.endPoint.long));
+              mapModel.fitBounds($scope.map.bounds);
+            }
           }
         };
 
