@@ -37,6 +37,12 @@ var JourneySchema = new Schema({
       rating: {type: Number, min: 1, max: 5}, 
       ratedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     }]
+  }],
+  comments: [
+  {
+    commentBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    commentDate: {type: Date, default: Date.now},
+    commentText: String
   }]  
 });
 

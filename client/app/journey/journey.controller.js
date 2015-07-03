@@ -5,6 +5,19 @@ angular.module('toTravelApp')
   .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi, $q) {
     var journeyPromise = journeyFactory.getJourney($stateParams.journeyID);
 
+    $scope.newCommentText = '';
+
+    $scope.addComment = function() {
+      if (!$scope.journey.comments) {
+        $scope.journey.comments = [];
+      }
+      $scope.journey.comments.push({
+        commentText: $scope.newCommentText,
+        commentBy: {name: 'Alex'}
+      });
+      $scope.newCommentText = ''; 
+    };
+
     $scope.methods = [
       {id: 'bike',  name: 'Bike', hasFAIcon: true, icon: 'fa-bicycle'},
       {id: 'walk',  name: 'Walk/Trek', hasFAIcon: true, icon: 'fa-compass'},
@@ -18,6 +31,10 @@ angular.module('toTravelApp')
       return $scope.methods.filter(function(obj) {
         return obj.id === transportationAndRating.method;
       })[0];
+    };
+
+    $scope.hasComments = function() {
+      return $scope.journey && $scope.journey.comments && $scope.journey.comments.length > 0;
     };
 
     // Async loading of google maps sdk - stuff in here can reference maps api

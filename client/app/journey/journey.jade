@@ -2,22 +2,51 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    h3 {{journey.name}}
+    .col-lg-8
+      h1 {{journey.name}}
+    .col-lg-4
+      .panel.panel-default.header-panel
+        .panel-body.header-panel-body
+          div(ng-repeat="transportationAndRating in journey.transportationAndRatings")
+            .transportationMethod.col-lg-6
+              i(ng-show='{{getMethod(transportationAndRating).hasFAIcon}}', ng-class='getMethod(transportationAndRating).icon').fa.fa-fw.fa-rightpad
+              | {{getMethod(transportationAndRating).name }}
+            .transportationRating.col-lg-6
+              rating(ng-model='transportationAndRating.averageRating', readonly='true').input-lg
+  .row.header-container
+
 
   .row
     h5 {{journey.description}}
 
   .row
-    ui-gmap-google-map(center='map.center', zoom='map.zoom', events='map.events', refresh='map.refresh')
-      ui-gmap-marker(coords='startMarker', idKey='startMarker.id', options='startMarker.options')
-      ui-gmap-marker(coords='endMarker', idKey='endMarker.id', options='endMarker.options')
-      ui-gmap-polyline(path='map.path', stroke='map.pathStroke', clickable='false', draggable='false')
+    .panel.panel-default
+      .panel-body
+        ui-gmap-google-map(center='map.center', zoom='map.zoom', events='map.events', refresh='map.refresh')
+          ui-gmap-marker(coords='startMarker', idKey='startMarker.id', options='startMarker.options')
+          ui-gmap-marker(coords='endMarker', idKey='endMarker.id', options='endMarker.options')
+          ui-gmap-polyline(path='map.path', stroke='map.pathStroke', clickable='false', draggable='false')
 
-  .row(ng-repeat="transportationAndRating in journey.transportationAndRatings")
-    .transportationMethod.col-lg-2
-      i(ng-show='{{getMethod(transportationAndRating).hasFAIcon}}', ng-class='getMethod(transportationAndRating).icon').fa.fa-fw.fa-rightpad
-      | {{getMethod(transportationAndRating).name }}
-    .transportationRating.col-lg-2
-      rating(ng-model='transportationAndRating.averageRating', readonly='true').input-lg
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Comments
+        .panel-body(ng-show='!hasComments()')
+          p Be the first to comment!
+        ul.comment-list.list-group(ng-show='hasComments()')
+          li.list-group-item(ng-repeat='comment in journey.comments')
+            .comment
+              .comment-avatar
+                img(src='https://avatars0.githubusercontent.com/u/1242475?v=3&s=120')
+              .comment-content
+                h5 {{comment.commentB.name}}
+                  small {{comment.commentDate | date:'fullDate'}}
+                p.list-group-item-text {{comment.commentText}}
+        //- .well(ng-show='!hasComments()') Be 
+
+        form(ng-show='true', ng-submit='addComment()').comment-form
+          textarea.new-comment-input.form-control(rows='3', ng-model='newCommentText', placeholder='Enter a new comment...')
+          button.btn.btn-primary(type='submit') Post
 
 div(ng-include='"components/footer/footer.html"')

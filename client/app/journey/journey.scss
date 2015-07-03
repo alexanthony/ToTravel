@@ -5,3 +5,40 @@
 .fa-rightpad {
   margin-right: 5px;
 }
+
+.comment-form .btn {
+  margin-top: 7px;
+  float: right;
+}
+
+.header-container {
+  height: 1px;
+  background: #ddd;
+}
+
+.header-panel {
+  margin-bottom: 5px;
+  @extend .well;
+  padding: 0px;
+}
+
+.header-panel-body {
+  padding: 5px;
+}
+
+.new-comment-input {
+  border-radius: 0px 0px 4px 4px;
+}
+
+.comment-avatar {
+  padding-right: 10px;
+  float: left;
+  img {
+    width: 70px;
+    border-radius: 5px;
+  }
+}
+
+.comment-list li {
+  min-height: 100px;
+}
