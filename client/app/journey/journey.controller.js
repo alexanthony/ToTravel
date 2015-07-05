@@ -2,8 +2,9 @@
 /*global google */
 
 angular.module('toTravelApp')
-  .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi, $q) {
+  .controller('JourneyCtrl', function ($scope, $stateParams, journeyFactory, uiGmapGoogleMapApi, $q, Auth) {
     var journeyPromise = journeyFactory.getJourney($stateParams.journeyID);
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.newCommentText = '';
 
@@ -13,9 +14,18 @@ angular.module('toTravelApp')
       }
       $scope.journey.comments.push({
         commentText: $scope.newCommentText,
-        commentBy: {name: 'Alex'}
+        commentBy: Auth.getCurrentUser()
       });
-      $scope.newCommentText = ''; 
+      journeyFactory.update($scope.journey._id, $scope.journey)
+        .success(function(data) {
+          console.log(data);
+          $scope.journey = data;
+          setAverageRatings();
+          $scope.newCommentText = '';
+        })
+        .error(function(data, error) {
+          console.log('Error: '+data.message+error);
+        });
     };
 
     $scope.methods = [
@@ -35,6 +45,16 @@ angular.module('toTravelApp')
 
     $scope.hasComments = function() {
       return $scope.journey && $scope.journey.comments && $scope.journey.comments.length > 0;
+    };
+
+    var setAverageRatings = function() {
+      for (var i = 0; i < $scope.journey.transportationAndRatings.length; i++) {
+        var totalRating = 0;
+        for (var j = 0; j < $scope.journey.transportationAndRatings[i].ratings.length; j++) {
+          totalRating = totalRating + $scope.journey.transportationAndRatings[i].ratings[j].rating;
+        }
+        $scope.journey.transportationAndRatings[i].averageRating = totalRating / $scope.journey.transportationAndRatings[i].ratings.length;
+      }
     };
 
     // Async loading of google maps sdk - stuff in here can reference maps api
@@ -87,21 +107,17 @@ angular.module('toTravelApp')
           },
           events : {
             tilesloaded : function(mapModel) {
-              $scope.map.bounds = new google.maps.LatLngBounds();
-              $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.startPoint.lat, $scope.journey.startPoint.long));
-              $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.endPoint.lat, $scope.journey.endPoint.long));
-              mapModel.fitBounds($scope.map.bounds);
+              if (!$scope.map.bounds) {
+                $scope.map.bounds = new google.maps.LatLngBounds();
+                $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.startPoint.lat, $scope.journey.startPoint.long));
+                $scope.map.bounds.extend(new google.maps.LatLng($scope.journey.endPoint.lat, $scope.journey.endPoint.long));
+                mapModel.fitBounds($scope.map.bounds);
+              }
             }
           }
         };
 
-        for (var i = 0; i < $scope.journey.transportationAndRatings.length; i++) {
-          var totalRating = 0;
-          for (var j = 0; j < $scope.journey.transportationAndRatings[i].ratings.length; j++) {
-            totalRating = totalRating + $scope.journey.transportationAndRatings[i].ratings[j].rating;
-          }
-          $scope.journey.transportationAndRatings[i].averageRating = totalRating / $scope.journey.transportationAndRatings[i].ratings.length;
-        }
+        setAverageRatings();
     }, 
     // Failure callback
     function(data) {

@@ -33,19 +33,20 @@ div(ng-include='"components/navbar/navbar.html"')
         .panel-heading
           h3.panel-title Comments
         .panel-body(ng-show='!hasComments()')
-          p Be the first to comment!
+          p(ng-if='isLoggedIn()') Be the first to comment!
+          p(ng-if='!isLoggedIn()') Log in to comment.
         ul.comment-list.list-group(ng-show='hasComments()')
           li.list-group-item(ng-repeat='comment in journey.comments')
             .comment
               .comment-avatar
                 img(src='https://avatars0.githubusercontent.com/u/1242475?v=3&s=120')
               .comment-content
-                h5 {{comment.commentB.name}}
+                h5 {{comment.commentBy.name}} 
                   small {{comment.commentDate | date:'fullDate'}}
                 p.list-group-item-text {{comment.commentText}}
         //- .well(ng-show='!hasComments()') Be 
 
-        form(ng-show='true', ng-submit='addComment()').comment-form
+        form(ng-show='isLoggedIn()', ng-submit='addComment()').comment-form
           textarea.new-comment-input.form-control(rows='3', ng-model='newCommentText', placeholder='Enter a new comment...')
           button.btn.btn-primary(type='submit') Post
 

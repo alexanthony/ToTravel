@@ -18,6 +18,12 @@ angular.module('toTravelApp')
       },
       delete : function(id) {
         return $http.delete('/api/journeys/' + id);
+      },
+      update : function(id, journeyData) {
+        for (var i = 0; i < journeyData.transportationAndRatings.length; i++) {
+          delete journeyData.transportationAndRatings[i].averageRating;
+        }
+        return $http.put('/api/journeys/' + id, journeyData);
       }
     };
   });
