@@ -1,23 +1,71 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
+  alert(ng-repeat='alert in alerts', type='{{alert.type}}', close='closeAlert($index)') {{alert.message}} 
   .row
-    .col-sm-12
-      h1 Change Password
-    .col-sm-12
-      form.form(name='form', ng-submit='changePassword(form)', novalidate='')
-        .form-group
-          label Current Password
-          input.form-control(type='password', name='password', ng-model='user.oldPassword', mongoose-error='')
-          p.help-block(ng-show='form.password.$error.mongoose')
-            | {{ errors.other }}
-        .form-group
-          label New Password
-          input.form-control(type='password', name='newPassword', ng-model='user.newPassword', ng-minlength='3', required='')
-          p.help-block(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)')
-            | Password must be at least 3 characters.
+    .col-lg-3
+      .panel.panel-default
+        .panel-body
+          img(src='https://avatars0.githubusercontent.com/u/1242475?v=3&s=120').img-responsive.img-rounded.large-profile-img
+          form.form(name='imgSrcForm')
+            //- div(ng-repeat='imgSrc in getAvailableImageSources()')
+            .radio
+              label
+                input(type='radio', name='imgSrc', value='facebook', ng-model='user.imgSrc')
+                | Facebook  
+            .radio
+              label
+                input(type='radio', name='imgSrc', value='gravatar', ng-model='user.imgSrc')
+                | Gravatar
+            .radio
+              label
+                input(type='radio', name='imgSrc', value='custom', ng-model='user.imgSrc')
+                | Custom...
 
-        p.help-block  {{ message }}
+    .col-lg-4
+      //- User Details
+      form.form(name='userDetailsForm')
+        .form-group
+          input.form-control.input-lg(type='text', ng-model='user.name')
+          .col-lg-12
+            label.checkbox-inline
+              input(type='checkbox', name='useRealName', ng-model='user.useRealName')
+              | Use real name
+          .form-group
+            label Nickname
+            input.input-sm.form-control(type='text', ng-model='user.nickname', ng-readonly='user.useRealName == true')
+          .form-group
+            label Language
+            input.input-sm.form-control(type='text', ng-model='user.language')
+          .form-group
+            label Default country
+            ui-select(ng-model='user.country')
+              ui-select-match(placeholder='Search or select a country...') 
+                | {{$select.selected.name}}
+              ui-select-choices(repeat='country in countries | filter: $select.search')
+                span(ng-bind-html='country.name | highlight: $select.search')
 
-        button.btn.btn-lg.btn-primary(type='submit') Save changes
+          .btn-toolbar
+            button.btn.btn-success(type='button', ng-click='saveUserDetails()') Save Details
+            button.btn.btn-warning(type='button', ng-click='revertUserDetails()') Cancel
+  .row
+    .col-lg-6
+      accordion
+        accordion-group
+          accordion-heading Change Password
+          form.form(name='form', ng-submit='changePassword(form)', novalidate='')
+            .form-group
+              label Current Password
+              input.form-control(type='password', name='password', ng-model='passwordChange.oldPassword', mongoose-error='')
+              p.help-block(ng-show='form.password.$error.mongoose')
+                | {{ passwordErrors.other }}
+            .form-group
+              label New Password
+              input.form-control(type='password', name='newPassword', ng-model='passwordChange.newPassword', ng-minlength='3', required='')
+              p.help-block(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)')
+                | Password must be at least 3 characters.
+
+            p.help-block  {{ passwordMessage }}
+
+            button.btn.btn-lg.btn-primary(type='submit') Change Password
 
 div(ng-include='"components/footer/footer.html"')

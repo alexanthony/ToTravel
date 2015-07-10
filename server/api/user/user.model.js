@@ -18,7 +18,9 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  useRealName: {type: Boolean, default: true},
+  nickname: {type: String, unique: true}
 });
 
 /**

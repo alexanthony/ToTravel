@@ -141,6 +141,10 @@ angular.module('toTravelApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+      
+      updateCurrentUser: function(user) {
+        currentUser = user;
       }
     };
   });

@@ -32,6 +32,16 @@ $bgHighlight    : #620065;
 $colDefault     : #ecf0f1;
 $colHighlight   : #ecdbff;
 
+.large-profile-img {
+  width:240px;
+}
+
+.panel-title a {
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

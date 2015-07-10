@@ -17,6 +17,12 @@ angular.module('toTravelApp')
         params: {
           id:'me'
         }
+      },
+      updateMe: {
+        method: 'PUT',
+        params: {
+          id:'me'
+        }
       }
 	  });
   });

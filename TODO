@@ -5,7 +5,7 @@
 * Emails to users
 ** Signup/email validation
 ** Other stuff
-* User Prefs
+* User Prefs <------------------------------------------------------
 ** Avatars
 ** Display names
 * Make it pretty
@@ -13,8 +13,8 @@
 ** Checking validation
 ** As much of the UI as possible
 * Map search 
-* Comments
 * Add MyJourneys
 * Add places along the way
 * Country reverse geocoding
 * Photos
+* Refactor methods into a service
