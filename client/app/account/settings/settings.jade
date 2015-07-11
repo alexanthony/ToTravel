@@ -5,21 +5,13 @@ div(ng-include='"components/navbar/navbar.html"')
     .col-lg-3
       .panel.panel-default
         .panel-body
-          img(src='https://avatars0.githubusercontent.com/u/1242475?v=3&s=120').img-responsive.img-rounded.large-profile-img
+          img(ng-src='{{userImageUrl()}}').img-responsive.img-rounded.large-profile-img
           form.form(name='imgSrcForm')
             //- div(ng-repeat='imgSrc in getAvailableImageSources()')
-            .radio
+            .radio(ng-repeat='source in availableImgSources')
               label
-                input(type='radio', name='imgSrc', value='facebook', ng-model='user.imgSrc')
-                | Facebook  
-            .radio
-              label
-                input(type='radio', name='imgSrc', value='gravatar', ng-model='user.imgSrc')
-                | Gravatar
-            .radio
-              label
-                input(type='radio', name='imgSrc', value='custom', ng-model='user.imgSrc')
-                | Custom...
+                input(type='radio', name='imgSrc', value='{{source.code}}', ng-model='user.imgSrc')
+                | {{source.name}}
 
     .col-lg-4
       //- User Details

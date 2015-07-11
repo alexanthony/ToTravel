@@ -20,7 +20,8 @@ var UserSchema = new Schema({
   google: {},
   github: {},
   useRealName: {type: Boolean, default: true},
-  nickname: {type: String, unique: true}
+  nickname: {type: String, unique: true},
+  imgSrc: String
 });
 
 /**

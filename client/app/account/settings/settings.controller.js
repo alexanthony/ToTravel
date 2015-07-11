@@ -11,6 +11,9 @@ angular.module('toTravelApp')
     $scope.passwordChange = {};
 
     $scope.user = User.get();
+    $scope.user.$promise.then(function() {
+      updateAvailableImgSources();
+    });
 
     $scope.alerts = [];
 
@@ -38,6 +41,7 @@ angular.module('toTravelApp')
           $scope.user = data;
           Auth.updateCurrentUser($scope.user);
           $scope.alerts.push({type: 'success', message: 'User details updated.'});
+          updateAvailableImgSources();
         }, function(err) {
           console.log(err);
           $scope.alerts.push({type: 'danger', message: err});
@@ -46,6 +50,35 @@ angular.module('toTravelApp')
 
     $scope.revertUserDetails = function() {
       $scope.user = User.get();
+      updateAvailableImgSources();
+    };
+
+    $scope.userImageUrl = function() {
+      if ($scope.user.imgSrc === 'gravatar') {
+        return 'http://avatars.io/email/'+$scope.user.email+'?size=large';
+      } else {
+        return 'https://avatars0.githubusercontent.com/u/1242475?v=3&s=120';
+      }
+    };
+
+    $scope.availableImgSources = [{code: 'custom', name: 'Custom...'}];
+
+    var updateAvailableImgSources = function() {
+      $scope.availableImgSources = [];
+      if ($scope.user.facebook && $scope.user.facebook !== {}) {
+        $scope.availableImgSources.push({code: 'facebook', name: 'Facebook'});
+      }
+      if ($scope.user.twitter && $scope.user.twitter !== {}) {
+        $scope.availableImgSources.push({code: 'twitter', name: 'Twitter'});
+      }
+      if ($scope.user.google && $scope.user.google !== {}) {
+        $scope.availableImgSources.push({code: 'google', name: 'Google'});
+      }
+      if ($scope.user.email && $scope.user.email.length > 0) {
+        $scope.availableImgSources.push({code: 'gravatar', name: 'Gravatar'});
+      }
+      $scope.availableImgSources.push({code: 'custom', name: 'Custom...'});
+      return $scope.availableImgSources;
     };
 
     $scope.countries = locationData.countries;
