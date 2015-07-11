@@ -1,6 +1,6 @@
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
-
+'use strict';
 
 module.exports = function(config) {
   config.set({
@@ -23,6 +23,7 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-ui-select/dist/select.js',
+      'client/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'client/app/app.js',
       'client/app/app.coffee',
       'client/app/**/*.js',
