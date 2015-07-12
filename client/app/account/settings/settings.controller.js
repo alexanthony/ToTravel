@@ -37,6 +37,7 @@ angular.module('toTravelApp')
     };
 
     $scope.saveUserDetails = function() {
+      $scope.alerts = [];
       User.updateMe($scope.user, function(data) {
           $scope.user = data;
           Auth.updateCurrentUser($scope.user);
