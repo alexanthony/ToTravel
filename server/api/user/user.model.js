@@ -120,6 +120,13 @@ UserSchema
     });
 }, 'The specified nickname is already in use.');
 
+UserSchema
+  .path('imgSrc')
+  .validate(function(value) {
+    if (value === 'gravatar' && !validatePresenceOf(this.email)) return false;
+    return true;
+  },
+  'The selected image source is not valid.');
 /**
  * Pre-save hook
  */
