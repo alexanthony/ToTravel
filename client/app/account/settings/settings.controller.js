@@ -44,7 +44,10 @@ angular.module('toTravelApp')
           updateAvailableImgSources();
         }, function(err) {
           console.log(err);
-          $scope.alerts.push({type: 'danger', message: err});
+          //$scope.alerts.push({type: 'danger', message: err.message});
+          for (var error in err.data.errors) {
+            $scope.alerts.push({type: 'danger', message: err.data.errors[error].message});
+          }
         });
     };
 
@@ -57,7 +60,7 @@ angular.module('toTravelApp')
       if ($scope.user.imgSrc === 'gravatar') {
         return 'http://avatars.io/email/'+$scope.user.email+'?size=large';
       } else {
-        return 'https://avatars0.githubusercontent.com/u/1242475?v=3&s=120';
+        return 'http://s3.amazonaws.com/cdn.getchute.com/v1/images/avatars.io/avatar-128.png';
       }
     };
 

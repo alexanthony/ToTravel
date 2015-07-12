@@ -97,6 +97,14 @@ var validatePresenceOf = function(value) {
   return value && value.length;
 };
 
+UserSchema
+  .path('useRealName')
+  .validate(function(useRealName) {
+    if ((!useRealName) && !this.nickname || this.nickname.length === 0) return false;
+    return true;
+  },
+  'Must use real name if no nickname is specified.');
+
 /**
  * Pre-save hook
  */
