@@ -105,6 +105,21 @@ UserSchema
   },
   'Must use real name if no nickname is specified.');
 
+// Validate nickname is not taken
+UserSchema
+  .path('nickname')
+  .validate(function(value, respond) {
+    var self = this;
+    this.constructor.findOne({nickname: value}, function(err, user) {
+      if(err) throw err;
+      if(user) {
+        if(self.id === user.id) return respond(true);
+        return respond(false);
+      }
+      respond(true);
+    });
+}, 'The specified nickname is already in use.');
+
 /**
  * Pre-save hook
  */
